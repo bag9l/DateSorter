@@ -10,13 +10,13 @@ import java.util.stream.Stream;
 public class DateSorter implements IDateSorter {
     @Override
     public Collection<LocalDate> sortDates(List<LocalDate> unsortedDates) {
-        List<LocalDate> datesContainsRInMonth = filterDatesContainingLetterInMonth(unsortedDates, "r");
-        List<LocalDate> datesNotContainsRInMonth = getDifferenceOfDateLists(unsortedDates, datesContainsRInMonth);
+        List<LocalDate> datesContainRInMonth = filterDatesContainingLetterInMonth(unsortedDates, "r");
+        List<LocalDate> datesNotContainRInMonth = getDifferenceOfDateLists(unsortedDates, datesContainRInMonth);
 
-        datesContainsRInMonth.sort(Comparator.naturalOrder());
-        datesNotContainsRInMonth.sort(Comparator.reverseOrder());
+        datesContainRInMonth.sort(Comparator.naturalOrder());
+        datesNotContainRInMonth.sort(Comparator.reverseOrder());
 
-        return Stream.concat(datesContainsRInMonth.stream(), datesNotContainsRInMonth.stream())
+        return Stream.concat(datesContainRInMonth.stream(), datesNotContainRInMonth.stream())
                 .collect(Collectors.toList());
     }
 
